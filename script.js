@@ -315,13 +315,13 @@ const dealsData = [
         items: ["Molten Lava Cake"],
         image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
     },
-    {
-        id: 16,
-        name: "Deal 16",
-        price: 1750,
-        items: ["4 Doner Burger", "1 Liter Drink"],
-        image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-    }
+    // {
+    //     id: 16,
+    //     name: "Deal 16",
+    //     price: 1750,
+    //     items: ["4 Doner Burger", "1 Liter Drink"],
+    //     image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    // }
 ];
 
 // Cart State
