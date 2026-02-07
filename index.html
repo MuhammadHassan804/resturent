@@ -3,817 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fast Pizza Cafe & Grill | Best Pizza in Mehrabpur | Fresh & Tasty</title>
-    <meta name="description" content="Fast Pizza Cafe & Grill in Mehrabpur offers delicious pizzas, burgers, shakes & more. Women-owned business with dine-in, pickup & delivery options.">
-    <meta name="keywords" content="pizza, burgers, fast food, Mehrabpur, delivery, takeaway, restaurant, cafe, grill">
+    <title>Fast Pizza Café & Grill | Fresh • Fast • Flavor Loaded | Mehrabpur</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&family=Playfair+Display:wght@700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
 </head>
 <body>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/923708099701?text=Hi%20Fast%20Pizza%20Café%20%26%20Grill!%20I'd%20like%20to%20place%20an%20order." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-text">Order Now</span>
+    </a>
+
+    <!-- Mobile Bottom Order Button -->
+    <button class="mobile-order-btn" onclick="openCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Order Now</span>
+        <span class="cart-count-mobile" id="cartCountMobile">0</span>
+    </button>
+
+    <!-- Remove Confirmation Modal -->
+    <div class="confirmation-modal" id="removeModal">
+        <div class="confirmation-content">
+            <h3><i class="fas fa-exclamation-triangle"></i> Remove Item</h3>
+            <p>Are you sure you want to remove this item from your cart?</p>
+            <div class="confirmation-buttons">
+                <button class="btn btn-secondary" onclick="cancelRemove()">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmRemove()">Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Side Panel -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Your Order (<span id="cartItemCount">0</span> items)</h3>
+            <button class="close-cart" onclick="closeCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be added here dynamically -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-basket"></i>
+                <p>Your cart is empty</p>
+                <p>Add delicious items from our menu!</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span class="total-amount">Rs. <span id="cartTotal">0</span></span>
+                </div>
+                <div class="delivery-info">
+                    <i class="fas fa-motorcycle"></i> Free Home Delivery
+                </div>
+            </div>
+            <button class="btn btn-primary checkout-btn" onclick="proceedToCheckout()">
+                <i class="fas fa-shopping-bag"></i> Checkout Now
+            </button>
+            <button class="btn btn-secondary continue-btn" onclick="closeCart()">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
     <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="#" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-pizza-slice"></i>
-                    </div>
-                    <div class="logo-text">
-                        <span class="logo-main">Fast Pizza Cafe</span>
-                        <span class="logo-sub">& Grill</span>
-                    </div>
-                </a>
-
-                <div class="nav-menu">
-                    <ul class="nav-list">
-                        <li><a href="#home" class="nav-link active">Home</a></li>
-                        <li><a href="#menu" class="nav-link">Menu</a></li>
-                        <li><a href="#deals" class="nav-link">Deals</a></li>
-                        <li><a href="#about" class="nav-link">About</a></li>
-                        <li><a href="#contact" class="nav-link">Contact</a></li>
-                    </ul>
-                </div>
-
-                <div class="nav-actions">
-                    <a href="tel:+923001234567" class="btn btn-sm btn-call">
-                        <i class="fas fa-phone"></i> Call Now
-                    </a>
-                    <a href="#order" class="btn btn-sm btn-order">
-                        <i class="fas fa-shopping-cart"></i> Order
-                    </a>
-                    <button class="menu-toggle" id="menuToggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
+    <header>
+        <div class="header-container container">
+            <div class="logo">
+                <h1>Fast Pizza Café & Grill</h1>
+                <span>Fresh • Fast • Flavor Loaded</span>
+            </div>
+            
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#deals">Deals</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </nav>
+            
+            <div class="header-cta">
+                <a href="#menu" class="btn btn-secondary">View Menu</a>
+                <div class="cart-icon-container" onclick="openCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badges">
-                    <span class="badge badge-primary"><i class="fas fa-star"></i> 3.8 Rating</span>
-                    <span class="badge badge-secondary"><i class="fas fa-crown"></i> Women-Owned</span>
-                    <span class="badge badge-tertiary"><i class="fas fa-bolt"></i> Fast Delivery</span>
-                </div>
-                
-                <h1 class="hero-title">Fresh Pizza, <span class="highlight">Real Taste</span></h1>
-                <h2 class="hero-subtitle">Fast Pizza Cafe & Grill</h2>
-                <p class="hero-description">Serving Mehrabpur with the most delicious pizzas, burgers, and fast food. Fresh ingredients, affordable prices, and speedy delivery.</p>
-                
-                <div class="hero-cta">
-                    <a href="#order" class="btn btn-primary btn-lg">
-                        <i class="fas fa-bolt"></i> Order Now
-                    </a>
-                    <a href="#menu" class="btn btn-outline btn-lg">
-                        <i class="fas fa-utensils"></i> View Menu
-                    </a>
-                </div>
-                
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label">Pizza Flavors</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">30+</div>
-                        <div class="stat-label">Menu Items</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">45</div>
-                        <div class="stat-label">Mins Delivery</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">3.8</div>
-                        <div class="stat-label">★ Rating</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="hero-image">
-                <div class="image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Delicious Pizza" class="hero-img">
-                    <div class="image-badge">
-                        <div class="price-tag">From <span>Rs 550</span></div>
-                        <p>Fresh & Tasty</p>
-                    </div>
-                </div>
+        <div class="hero-content">
+            <h1>Fresh, Hot & Delicious Fast Food in Mehrabpur</h1>
+            <p>Pizza • Burgers • Fries • Shakes • Deals</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">
+                    <i class="fas fa-utensils"></i> Order Now
+                </a>
+                <a href="#deals" class="btn btn-secondary">
+                    <i class="fas fa-tag"></i> View Deals
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services">
+    <!-- About Section
+    <section class="about" id="about">
         <div class="container">
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-motorcycle"></i>
+            <div class="about-container">
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-pizza-slice"></i>
+                        <p>Fast Pizza Café & Grill</p>
                     </div>
-                    <h3>Fast Delivery</h3>
-                    <p>Get your food delivered hot and fresh within 45 minutes</p>
                 </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-leaf"></i>
+                <div class="about-content">
+                    <div class="section-title">
+                        <h2>About Us</h2>
                     </div>
-                    <h3>Fresh Ingredients</h3>
-                    <p>We use only the freshest, highest quality ingredients</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tags"></i>
+                    <div class="about-text">
+                        <h3>Serving Mehrabpur Since 2020</h3>
+                        <p>Welcome to <strong>Fast Pizza Café & Grill</strong>, your favorite destination for delicious fast food in Mehrabpur. We're committed to serving fresh, hot, and flavor-loaded meals that satisfy your cravings.</p>
+                        
+                        <div class="features-grid">
+                            <div class="feature">
+                                <i class="fas fa-clock"></i>
+                                <h4>Fast Service</h4>
+                                <p>Quick preparation and delivery to get your food hot and fresh</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-leaf"></i>
+                                <h4>Fresh Ingredients</h4>
+                                <p>We use only the freshest ingredients in all our dishes</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-motorcycle"></i>
+                                <h4>Free Delivery</h4>
+                                <p>Free home delivery across Mehrabpur area</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-award"></i>
+                                <h4>Quality Guarantee</h4>
+                                <p>Consistent quality and taste in every order</p>
+                            </div>
+                        </div>
+                        
+                        <div class="about-cta">
+                            <a href="#contact" class="btn btn-primary">
+                                <i class="fas fa-phone"></i> Contact Us
+                            </a>
+                            <a href="#menu" class="btn btn-secondary">
+                                <i class="fas fa-book-open"></i> View Full Menu
+                            </a>
+                        </div>
                     </div>
-                    <h3>Best Prices</h3>
-                    <p>Delicious meals at prices that won't break your budget</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Open Daily</h3>
-                    <p>Opens daily at 10:00 AM for dine-in and delivery</p>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Menu Section -->
-    <section class="menu-section" id="menu">
+    <section class="menu" id="menu">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Our Delicious Menu</h2>
-                <p class="section-subtitle">Choose from our wide variety of fresh and tasty dishes</p>
+            <div class="section-title">
+                <h2>Our Menu</h2>
+                <p class="section-subtitle">Delicious food made fresh for you</p>
             </div>
             
-            <!-- Menu Navigation -->
-            <div class="menu-nav">
-                <button class="menu-nav-btn active" data-category="pizza">
-                    <i class="fas fa-pizza-slice"></i>
-                    <span>Pizza</span>
-                </button>
-                <button class="menu-nav-btn" data-category="burgers">
-                    <i class="fas fa-hamburger"></i>
-                    <span>Burgers</span>
-                </button>
-                <button class="menu-nav-btn" data-category="shakes">
-                    <i class="fas fa-glass-whiskey"></i>
-                    <span>Shakes</span>
-                </button>
-                <button class="menu-nav-btn" data-category="icecream">
-                    <i class="fas fa-ice-cream"></i>
-                    <span>Ice Cream</span>
-                </button>
-                <button class="menu-nav-btn" data-category="drinks">
-                    <i class="fas fa-wine-bottle"></i>
-                    <span>Drinks</span>
-                </button>
+            <div class="menu-tabs" id="menuTabs">
+                <button class="tab-btn active" data-category="pizza">Pizza</button>
+                <button class="tab-btn" data-category="burger">Burgers</button>
+                <button class="tab-btn" data-category="fries">Fries & Rolls</button>
+                <button class="tab-btn" data-category="sandwich">Sandwiches</button>
+                <button class="tab-btn" data-category="icecream">Ice Cream</button>
+                <button class="tab-btn" data-category="drinks">Shakes & Drinks</button>
             </div>
             
-            <!-- Pizza Menu -->
-            <div class="menu-category active" id="pizza-category">
-                <h3 class="category-title">Pizza Menu</h3>
-                
-                <!-- Regular Pizzas -->
-                <div class="category-section">
-                    <h4 class="section-heading">Regular Pizzas <span class="price-note">(Small/Medium/Large)</span></h4>
-                    <div class="menu-items-grid">
-                        <div class="menu-item">
-                            <div class="item-image">
-                                <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Tikka Pizza">
-                            </div>
-                            <div class="item-content">
-                                <div class="item-header">
-                                    <h5>Tikka Pizza</h5>
-                                    <div class="item-price">
-                                        <span class="price">Rs 550 / 1000 / 1500</span>
-                                    </div>
-                                </div>
-                                <p class="item-description">Spicy chicken tikka with onions, peppers, and special sauce</p>
-                                <button class="btn-add" data-item="Tikka Pizza (Small)" data-price="550">Add Small</button>
-                                <button class="btn-add" data-item="Tikka Pizza (Medium)" data-price="1000">Add Medium</button>
-                            </div>
-                        </div>
-                        
-                        <div class="menu-item">
-                            <div class="item-image">
-                                <img src="https://images.unsplash.com/photo-1593246049226-ded77bf90326?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Fajita Pizza">
-                            </div>
-                            <div class="item-content">
-                                <div class="item-header">
-                                    <h5>Fajita Pizza</h5>
-                                    <div class="item-price">
-                                        <span class="price">Rs 550 / 1000 / 1500</span>
-                                    </div>
-                                </div>
-                                <p class="item-description">Chicken fajita strips with bell peppers and onions</p>
-                                <button class="btn-add" data-item="Fajita Pizza (Small)" data-price="550">Add Small</button>
-                                <button class="btn-add" data-item="Fajita Pizza (Medium)" data-price="1000">Add Medium</button>
-                            </div>
-                        </div>
-                        
-                        <div class="menu-item">
-                            <div class="item-image">
-                                <img src="https://images.unsplash.com/photo-1555072956-7758afb20e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Tandoori Pizza">
-                            </div>
-                            <div class="item-content">
-                                <div class="item-header">
-                                    <h5>Tandoori Pizza</h5>
-                                    <div class="item-price">
-                                        <span class="price">Rs 550 / 1000 / 1500</span>
-                                    </div>
-                                </div>
-                                <p class="item-description">Tandoori chicken with herbs and spices</p>
-                                <button class="btn-add" data-item="Tandoori Pizza (Small)" data-price="550">Add Small</button>
-                                <button class="btn-add" data-item="Tandoori Pizza (Medium)" data-price="1000">Add Medium</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Special Pizzas -->
-                <div class="category-section">
-                    <h4 class="section-heading">Special Pizzas <span class="price-note">(Small/Medium/Large)</span></h4>
-                    <div class="menu-items-grid">
-                        <div class="menu-item">
-                            <div class="item-content">
-                                <div class="item-header">
-                                    <h5>Chicken Kabab Pizza</h5>
-                                    <div class="item-price">
-                                        <span class="price">Rs 700 / 1200 / 1800</span>
-                                    </div>
-                                </div>
-                                <p class="item-description">Chicken kabab pieces with special seasoning</p>
-                                <button class="btn-add" data-item="Chicken Kabab Pizza (Small)" data-price="700">Add Small</button>
-                            </div>
-                        </div>
-                        
-                        <div class="menu-item">
-                            <div class="item-content">
-                                <div class="item-header">
-                                    <h5>Hot n Spicy Pizza</h5>
-                                    <div class="item-price">
-                                        <span class="price">Rs 700 / 1200 / 1800</span>
-                                    </div>
-                                </div>
-                                <p class="item-description">Extra spicy pizza for heat lovers</p>
-                                <button class="btn-add" data-item="Hot n Spicy Pizza (Small)" data-price="700">Add Small</button>
-                            </div>
-                        </div>
-                        
-                        <div class="menu-item">
-                            <div class="item-content">
-                                <div class="item-header">
-                                    <h5>Seekh Kabab Pizza</h5>
-                                    <div class="item-price">
-                                        <span class="price">Rs 700 / 1200 / 1800</span>
-                                    </div>
-                                </div>
-                                <p class="item-description">Minced seekh kabab with spices</p>
-                                <button class="btn-add" data-item="Seekh Kabab Pizza (Small)" data-price="700">Add Small</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Full Pizza Price Table -->
-                <div class="price-table">
-                    <h4 class="table-title">Complete Pizza Price List</h4>
-                    <div class="table-responsive">
-                        <table class="pricing-table">
-                            <thead>
-                                <tr>
-                                    <th>Flavor</th>
-                                    <th>Small</th>
-                                    <th>Medium</th>
-                                    <th>Large</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Tikka</td>
-                                    <td>Rs 550</td>
-                                    <td>Rs 1000</td>
-                                    <td>Rs 1500</td>
-                                </tr>
-                                <tr>
-                                    <td>Fajita</td>
-                                    <td>Rs 550</td>
-                                    <td>Rs 1000</td>
-                                    <td>Rs 1500</td>
-                                </tr>
-                                <tr>
-                                    <td>Tandoori</td>
-                                    <td>Rs 550</td>
-                                    <td>Rs 1000</td>
-                                    <td>Rs 1500</td>
-                                </tr>
-                                <tr>
-                                    <td>Veggie Lover</td>
-                                    <td>Rs 550</td>
-                                    <td>Rs 1000</td>
-                                    <td>Rs 1500</td>
-                                </tr>
-                                <tr>
-                                    <td>Cheese Lover</td>
-                                    <td>Rs 550</td>
-                                    <td>Rs 1000</td>
-                                    <td>Rs 1500</td>
-                                </tr>
-                                <tr>
-                                    <td>Achari</td>
-                                    <td>Rs 550</td>
-                                    <td>Rs 1000</td>
-                                    <td>Rs 1500</td>
-                                </tr>
-                                <tr>
-                                    <td>Supreme</td>
-                                    <td>Rs 550</td>
-                                    <td>Rs 1000</td>
-                                    <td>Rs 1500</td>
-                                </tr>
-                                <tr class="table-divider">
-                                    <td colspan="4">Special Flavours</td>
-                                </tr>
-                                <tr>
-                                    <td>Creamy</td>
-                                    <td>Rs 700</td>
-                                    <td>Rs 1200</td>
-                                    <td>Rs 1800</td>
-                                </tr>
-                                <tr>
-                                    <td>Chicken Kabab</td>
-                                    <td>Rs 700</td>
-                                    <td>Rs 1200</td>
-                                    <td>Rs 1800</td>
-                                </tr>
-                                <tr>
-                                    <td>Hot n Spicy</td>
-                                    <td>Rs 700</td>
-                                    <td>Rs 1200</td>
-                                    <td>Rs 1800</td>
-                                </tr>
-                                <tr>
-                                    <td>Seekh Kabab</td>
-                                    <td>Rs 700</td>
-                                    <td>Rs 1200</td>
-                                    <td>Rs 1800</td>
-                                </tr>
-                                <tr>
-                                    <td>Chapli Kabab</td>
-                                    <td>Rs 700</td>
-                                    <td>Rs 1200</td>
-                                    <td>Rs 1800</td>
-                                </tr>
-                                <tr>
-                                    <td>4 Season</td>
-                                    <td>Rs 700</td>
-                                    <td>Rs 1200</td>
-                                    <td>Rs 1800</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="menu-content">
+                <!-- All menu sections will be loaded dynamically -->
             </div>
-            
-            <!-- Burgers Menu -->
-            <div class="menu-category" id="burgers-category">
-                <h3 class="category-title">Burgers & Fast Food</h3>
-                <div class="menu-items-grid">
-                    <div class="menu-item">
-                        <div class="item-image">
-                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Zinger Burger">
-                        </div>
-                        <div class="item-content">
-                            <div class="item-header">
-                                <h5>Zinger Burger</h5>
-                                <div class="item-price">
-                                    <span class="price">Rs 450</span>
-                                </div>
-                            </div>
-                            <p class="item-description">Crispy chicken fillet with fresh veggies and special sauce</p>
-                            <button class="btn-add" data-item="Zinger Burger" data-price="450">Add to Order</button>
-                        </div>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <div class="item-image">
-                            <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Beef Burger">
-                        </div>
-                        <div class="item-content">
-                            <div class="item-header">
-                                <h5>Beef Burger</h5>
-                                <div class="item-price">
-                                    <span class="price">Rs 500</span>
-                                </div>
-                            </div>
-                            <p class="item-description">Juicy beef patty with cheese, lettuce, and special sauce</p>
-                            <button class="btn-add" data-item="Beef Burger" data-price="500">Add to Order</button>
-                        </div>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <div class="item-content">
-                            <div class="item-header">
-                                <h5>Chicken Burger</h5>
-                                <div class="item-price">
-                                    <span class="price">Rs 400</span>
-                                </div>
-                            </div>
-                            <p class="item-description">Grilled chicken burger with fresh vegetables and mayo</p>
-                            <button class="btn-add" data-item="Chicken Burger" data-price="400">Add to Order</button>
-                        </div>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <div class="item-content">
-                            <div class="item-header">
-                                <h5>Pizza Burger</h5>
-                                <div class="item-price">
-                                    <span class="price">Rs 550</span>
-                                </div>
-                            </div>
-                            <p class="item-description">A unique fusion of pizza and burger</p>
-                            <button class="btn-add" data-item="Pizza Burger" data-price="550">Add to Order</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Shakes Menu -->
-            <div class="menu-category" id="shakes-category">
-                <h3 class="category-title">Shakes & Beverages</h3>
-                <div class="menu-items-grid">
-                    <div class="menu-item">
-                        <div class="item-image">
-                            <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Chocolate Shake">
-                        </div>
-                        <div class="item-content">
-                            <div class="item-header">
-                                <h5>Chocolate Shake</h5>
-                                <div class="item-price">
-                                    <span class="price">Rs 280</span>
-                                </div>
-                            </div>
-                            <p class="item-description">Rich chocolate milkshake</p>
-                            <button class="btn-add" data-item="Chocolate Shake" data-price="280">Add to Order</button>
-                        </div>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <div class="item-image">
-                            <img src="https://images.unsplash.com/photo-1628992682633-bf2d40cb595f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Mango Shake">
-                        </div>
-                        <div class="item-content">
-                            <div class="item-header">
-                                <h5>Mango Shake</h5>
-                                <div class="item-price">
-                                    <span class="price">Rs 250</span>
-                                </div>
-                            </div>
-                            <p class="item-description">Fresh mango milkshake</p>
-                            <button class="btn-add" data-item="Mango Shake" data-price="250">Add to Order</button>
-                        </div>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <div class="item-content">
-                            <div class="item-header">
-                                <h5>Oreo Shake</h5>
-                                <div class="item-price">
-                                    <span class="price">Rs 300</span>
-                                </div>
-                            </div>
-                            <p class="item-description">Oreo cookie milkshake</p>
-                            <button class="btn-add" data-item="Oreo Shake" data-price="300">Add to Order</button>
-                        </div>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <div class="item-content">
-                            <div class="item-header">
-                                <h5>Banana Shake</h5>
-                                <div class="item-price">
-                                    <span class="price">Rs 200</span>
-                                </div>
-                            </div>
-                            <p class="item-description">Creamy banana milkshake</p>
-                            <button class="btn-add" data-item="Banana Shake" data-price="200">Add to Order</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Other categories would be added similarly -->
-            
         </div>
     </section>
 
     <!-- Deals Section -->
-    <section class="deals-section" id="deals">
+    <section class="deals" id="deals">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Special Deals</h2>
-                <p class="section-subtitle">Get more for less with our combo deals</p>
+            <div class="section-title">
+                <h2>Special Deals</h2>
+                <p class="section-subtitle">Save more with our combo offers</p>
             </div>
             
             <div class="deals-grid">
-                <div class="deal-card deal-featured">
-                    <div class="deal-badge">Most Popular</div>
-                    <div class="deal-content">
-                        <h3>Family Feast Deal</h3>
-                        <div class="deal-price">
-                            <span class="original">Rs 2990</span>
-                            <span class="current">Rs 1999</span>
-                        </div>
-                        <ul class="deal-items">
-                            <li>1 Large Pizza (Any Regular)</li>
-                            <li>2 Zinger Burgers</li>
-                            <li>1 Large Fries</li>
-                            <li>2 Cold Drinks</li>
-                        </ul>
-                        <p class="deal-save">You save Rs 991</p>
-                        <button class="btn-add-deal" data-deal="Family Feast Deal" data-price="1999">Add Deal to Order</button>
-                    </div>
-                </div>
-                
-                <div class="deal-card">
-                    <div class="deal-content">
-                        <h3>Pizza Combo</h3>
-                        <div class="deal-price">
-                            <span class="original">Rs 1750</span>
-                            <span class="current">Rs 1299</span>
-                        </div>
-                        <ul class="deal-items">
-                            <li>1 Medium Pizza (Special)</li>
-                            <li>1 Small Pizza (Regular)</li>
-                            <li>2 Cold Drinks</li>
-                        </ul>
-                        <p class="deal-save">You save Rs 451</p>
-                        <button class="btn-add-deal" data-deal="Pizza Combo" data-price="1299">Add Deal to Order</button>
-                    </div>
-                </div>
-                
-                <div class="deal-card">
-                    <div class="deal-content">
-                        <h3>Burger Meal</h3>
-                        <div class="deal-price">
-                            <span class="original">Rs 850</span>
-                            <span class="current">Rs 699</span>
-                        </div>
-                        <ul class="deal-items">
-                            <li>1 Zinger Burger</li>
-                            <li>1 Regular Fries</li>
-                            <li>1 Cold Drink</li>
-                            <li>1 Ice Cream Scoop</li>
-                        </ul>
-                        <p class="deal-save">You save Rs 151</p>
-                        <button class="btn-add-deal" data-deal="Burger Meal" data-price="699">Add Deal to Order</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Order Section -->
-    <section class="order-section" id="order">
-        <div class="container">
-            <div class="order-container">
-                <div class="order-summary">
-                    <h3 class="order-title">Your Order</h3>
-                    <div class="cart-items" id="cartItems">
-                        <div class="empty-cart">
-                            <i class="fas fa-shopping-cart"></i>
-                            <p>Your cart is empty</p>
-                            <p>Add items from our menu</p>
-                        </div>
-                    </div>
-                    
-                    <div class="cart-totals">
-                        <div class="total-row">
-                            <span>Subtotal:</span>
-                            <span id="subtotal">Rs 0</span>
-                        </div>
-                        <div class="total-row">
-                            <span>Delivery:</span>
-                            <span>Rs 100</span>
-                        </div>
-                        <div class="total-row grand-total">
-                            <span>Total:</span>
-                            <span id="grandTotal">Rs 100</span>
-                        </div>
-                    </div>
-                    
-                    <button class="btn btn-primary btn-checkout" id="checkoutBtn" disabled>
-                        <i class="fas fa-check-circle"></i> Proceed to Order
-                    </button>
-                </div>
-                
-                <div class="order-form">
-                    <h3 class="order-title">Place Your Order</h3>
-                    
-                    <div class="order-methods">
-                        <div class="whatsapp-order">
-                            <div class="method-icon">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-                            <h4>Order via WhatsApp</h4>
-                            <p>Fastest way to order. Click below to chat with us.</p>
-                            <a href="https://wa.me/923001234567?text=Hi,%20I'd%20like%20to%20order%20from%20Fast%20Pizza%20Cafe%20%26%20Grill" class="btn btn-whatsapp" target="_blank">
-                                <i class="fab fa-whatsapp"></i> Order on WhatsApp
-                            </a>
-                        </div>
-                        
-                        <div class="phone-order">
-                            <div class="method-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <h4>Call to Order</h4>
-                            <p>Call us directly to place your order</p>
-                            <a href="tel:+923001234567" class="btn btn-call">
-                                <i class="fas fa-phone"></i> Call Now
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="form-container">
-                        <h4>Or fill out this form</h4>
-                        <form id="orderForm">
-                            <div class="form-group">
-                                <label for="name">Your Name</label>
-                                <input type="text" id="name" placeholder="Enter your name" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" placeholder="0300 1234567" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="address">Delivery Address</label>
-                                <textarea id="address" placeholder="Enter your complete address with landmarks" rows="3" required></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="instructions">Special Instructions</label>
-                                <textarea id="instructions" placeholder="Any special requests or instructions" rows="2"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary btn-submit">
-                                <i class="fas fa-paper-plane"></i> Submit Order
-                            </button>
-                            
-                            <p class="form-note">
-                                <i class="fas fa-info-circle"></i> Our team will call you to confirm your order
-                            </p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about-section" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-image">
-                    <div class="image-frame">
-                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cafe Interior">
-                    </div>
-                </div>
-                
-                <div class="about-text">
-                    <div class="about-badge">
-                        <span class="badge women-owned">
-                            <i class="fas fa-crown"></i> Women-Owned Business
-                        </span>
-                    </div>
-                    
-                    <h2 class="about-title">About Fast Pizza Cafe</h2>
-                    <p class="about-description">
-                        Welcome to Fast Pizza Cafe & Grill, your neighborhood favorite in Mehrabpur. Since 2020, we've been serving delicious, affordable pizza and fast food made with fresh ingredients and lots of love.
-                    </p>
-                    
-                    <p class="about-description">
-                        As a proudly women-owned business, we're committed to providing quality food at reasonable prices. Our mission is simple: serve great food that brings people together.
-                    </p>
-                    
-                    <div class="about-features">
-                        <div class="feature">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h5>Location</h5>
-                                <p>Mehrabpur Rd, Ward No. 3</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature">
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <h5>Opening Hours</h5>
-                                <p>Opens daily at 10:00 AM</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature">
-                            <i class="fas fa-utensils"></i>
-                            <div>
-                                <h5>Services</h5>
-                                <p>Dine-in • Takeaway • Delivery</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cta-buttons">
-                        <a href="#contact" class="btn btn-outline">
-                            <i class="fas fa-directions"></i> Visit Us
-                        </a>
-                        <a href="#order" class="btn btn-primary">
-                            <i class="fas fa-shopping-cart"></i> Order Now
-                        </a>
-                    </div>
-                </div>
+                <!-- Deals will be loaded dynamically -->
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact-section" id="contact">
+    <section class="contact" id="contact">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Contact Us</h2>
-                <p class="section-subtitle">Get in touch or visit us today</p>
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p class="section-subtitle">Get in touch for orders or inquiries</p>
             </div>
             
-            <div class="contact-content">
+            <div class="contact-container">
                 <div class="contact-info">
                     <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h4>Address</h4>
-                            <p>4C29+F8X, Mehrabpur Rd, Ward No. 3, Mehrabpur, Pakistan</p>
-                            <p class="contact-note">Located inside Fine Ladies & Gents Tailor</p>
-                        </div>
+                        <h3><i class="fas fa-map-marker-alt"></i> Our Location</h3>
+                        <p>Thran Road, Near UBL Bank, Mehrabpur<br>Fast Pizza Café & Grill, Mehrabpur, Pakistan</p>
                     </div>
                     
                     <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div>
-                            <h4>Phone & WhatsApp</h4>
-                            <p><a href="tel:+923001234567">+92 300 1234567</a></p>
-                            <p><a href="https://wa.me/923001234567" target="_blank">Chat on WhatsApp</a></p>
-                        </div>
+                        <h3><i class="fas fa-phone"></i> Phone Numbers</h3>
+                        <p>0370-8099701<br>0309-2014466</p>
+                        <a href="tel:03708099701" class="btn btn-small">
+                            <i class="fas fa-phone"></i> Call Now
+                        </a>
                     </div>
                     
                     <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div>
-                            <h4>Opening Hours</h4>
-                            <p>Opens daily at 10:00 AM</p>
-                        </div>
+                        <h3><i class="fab fa-whatsapp"></i> WhatsApp Orders</h3>
+                        <p>0370-8099701</p>
+                        <a href="https://wa.me/923708099701?text=Hi%20Fast%20Pizza%20Café%20%26%20Grill!%20I'd%20like%20to%20place%20an%20order." 
+                           class="btn btn-primary" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                        </a>
                     </div>
                     
-                    <div class="social-links">
-                        <h4>Follow Us</h4>
-                        <div class="social-icons">
-                            <a href="#" class="social-icon facebook">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="social-icon instagram">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" class="social-icon whatsapp">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
+                    <div class="contact-card">
+                        <h3><i class="fas fa-clock"></i> Opening Hours</h3>
+                        <p><strong>Monday - Sunday:</strong><br>11:00 AM - 12:00 AM</p>
+                        <div class="delivery-badge">
+                            <i class="fas fa-motorcycle"></i> Free Home Delivery Available
                         </div>
                     </div>
                 </div>
                 
-                <div class="map-container">
-                    <div class="map-frame">
-                        <div class="map-placeholder">
-                            <i class="fas fa-map-marked-alt"></i>
-                            <h4>Our Location</h4>
-                            <p>Fast Pizza Cafe & Grill</p>
-                            <p>Mehrabpur Rd, Ward No. 3, Mehrabpur</p>
-                            <a href="https://goo.gl/maps/example" class="btn btn-outline" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> View on Map
-                            </a>
+                <div class="map-section">
+                    <h3><i class="fas fa-map-marked-alt"></i> Find Us</h3>
+                    <div class="map-placeholder">
+                        <div class="map-content">
+                            <i class="fas fa-map-pin"></i>
+                            <h4>Fast Pizza Café & Grill</h4>
+                            <p>Thran Road, Near UBL Bank</p>
+                            <p>Mehrabpur, Pakistan</p>
+                            <div class="map-actions">
+                                <button class="btn btn-small" onclick="window.open('https://maps.google.com/?q=Thran+Road+Near+UBL+Bank+Mehrabpur', '_blank')">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -821,91 +269,232 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <i class="fas fa-pizza-slice"></i>
-                        <div>
-                            <h4>Fast Pizza Cafe & Grill</h4>
-                            <p>Fresh Pizza, Real Taste</p>
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-content">
+            <div class="checkout-header">
+                <h3><i class="fas fa-clipboard-check"></i> Complete Your Order</h3>
+                <button class="close-checkout" onclick="closeCheckout()">&times;</button>
+            </div>
+            
+            <div class="checkout-body">
+                <div class="checkout-steps">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Order Details</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Delivery Info</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Confirmation</div>
+                    </div>
+                </div>
+                
+                <form id="checkoutForm">
+                    <!-- Step 1: Order Review -->
+                    <div class="checkout-step active" id="step1">
+                        <h4><i class="fas fa-shopping-cart"></i> Review Your Order</h4>
+                        <div class="order-summary" id="orderSummary">
+                            <!-- Order items will be displayed here -->
+                        </div>
+                        <div class="order-total">
+                            <div class="total-line">
+                                <span>Subtotal:</span>
+                                <span>Rs. <span id="subtotalAmount">0</span></span>
+                            </div>
+                            <div class="total-line">
+                                <span>Delivery:</span>
+                                <span class="free">FREE</span>
+                            </div>
+                            <div class="total-line grand-total">
+                                <span>Total Amount:</span>
+                                <span>Rs. <span id="grandTotal">0</span></span>
+                            </div>
+                        </div>
+                        <div class="step-actions">
+                            <button type="button" class="btn btn-secondary" onclick="closeCheckout()">
+                                <i class="fas fa-arrow-left"></i> Back to Cart
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="nextStep()">
+                                Continue <i class="fas fa-arrow-right"></i>
+                            </button>
                         </div>
                     </div>
-                    <p class="footer-text">
-                        Serving delicious pizzas, burgers, and fast food in Mehrabpur since 2020. Quality food at affordable prices.
-                    </p>
-                    <div class="footer-badges">
-                        <span class="badge badge-sm">
-                            <i class="fas fa-star"></i> 3.8/5
-                        </span>
-                        <span class="badge badge-sm women-owned">
-                            <i class="fas fa-crown"></i> Women-Owned
-                        </span>
+                    
+                    <!-- Step 2: Customer Details -->
+                    <div class="checkout-step" id="step2">
+                        <h4><i class="fas fa-user"></i> Your Information</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" required placeholder="Enter your full name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="mobileNumber">Mobile Number *</label>
+                                <input type="tel" id="mobileNumber" required placeholder="03XX-XXXXXXX">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="whatsappNumber">WhatsApp Number</label>
+                                <div class="input-with-button">
+                                    <input type="tel" id="whatsappNumber" placeholder="Same as mobile number">
+                                    <button type="button" class="btn btn-small" onclick="copyMobileToWhatsApp()">
+                                        <i class="fas fa-copy"></i> Same as Mobile
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="deliveryAddress">Delivery Address *</label>
+                                <input type="text" id="street" placeholder="Street / House No." required>
+                                <input type="text" id="area" placeholder="Area / Sector" required>
+                                <input type="text" id="landmark" placeholder="Landmark (e.g., Near UBL Bank)">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <div class="readonly-field">
+                                    <input type="text" id="city" value="Mehrabpur" readonly>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="instructions">Special Instructions</label>
+                                <textarea id="instructions" rows="3" placeholder="Any special requests or delivery instructions..."></textarea>
+                            </div>
+                        </div>
+                        <div class="step-actions">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                                <i class="fas fa-arrow-left"></i> Back
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="nextStep()">
+                                Review Order <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Confirmation -->
+                    <div class="checkout-step" id="step3">
+                        <h4><i class="fas fa-check-circle"></i> Confirm & Place Order</h4>
+                        <div class="confirmation-summary">
+                            <div class="summary-section">
+                                <h5><i class="fas fa-user"></i> Customer Details</h5>
+                                <div id="customerSummary">
+                                    <!-- Customer details will be displayed here -->
+                                </div>
+                            </div>
+                            
+                            <div class="summary-section">
+                                <h5><i class="fas fa-map-marker-alt"></i> Delivery Address</h5>
+                                <div id="addressSummary">
+                                    <!-- Address details will be displayed here -->
+                                </div>
+                            </div>
+                            
+                            <div class="summary-section">
+                                <h5><i class="fas fa-receipt"></i> Order Summary</h5>
+                                <div id="finalOrderSummary">
+                                    <!-- Final order summary will be displayed here -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-notice">
+                            <i class="fas fa-info-circle"></i>
+                            <p><strong>Note:</strong> Payment will be collected in cash upon delivery. We accept cash only.</p>
+                        </div>
+                        
+                        <div class="step-actions">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                                <i class="fas fa-edit"></i> Edit Details
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="placeOrder()">
+                                <i class="fab fa-whatsapp"></i> Place Order via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <h3>Fast Pizza Café & Grill</h3>
+                        <p>Fresh • Fast • Flavor Loaded</p>
+                    </div>
+                    <p class="footer-description">Your favorite fast food destination in Mehrabpur, serving delicious pizza, burgers, fries, rolls, shakes, and more!</p>
+                    <div class="delivery-badge">
+                        <i class="fas fa-motorcycle"></i> Free Home Delivery
+                    </div>
+                </div>
+            
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="#menu"><i class="fas fa-utensils"></i> Menu</a></li>
+                        <li><a href="#deals"><i class="fas fa-tag"></i> Deals</a></li>
+                        <li><a href="#contact"><i class="fas fa-phone"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info-footer">
+                        <p><i class="fas fa-map-marker-alt"></i> Thran Road, Near UBL Bank, Mehrabpur</p>
+                        <p><i class="fas fa-phone"></i> 0370-8099701</p>
+                        <p><i class="fas fa-phone"></i> 0309-2014466</p>
+                        <p><i class="fab fa-whatsapp"></i> 0370-8099701 (WhatsApp)</p>
                     </div>
                 </div>
                 
-                <div class="footer-section">
-                    <h5>Quick Links</h5>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#menu">Menu</a></li>
-                        <li><a href="#deals">Deals</a></li>
-                        <li><a href="#order">Order Online</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h5>Contact Info</h5>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-map-marker-alt"></i> Mehrabpur Rd, Ward No. 3</li>
-                        <li><i class="fas fa-phone-alt"></i> +92 300 1234567</li>
-                        <li><i class="fas fa-clock"></i> Opens 10AM Daily</li>
-                        <li><i class="fas fa-tag"></i> Rs 500-1000 per person</li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h5>Get Updates</h5>
-                    <p>Subscribe for special offers</p>
-                    <form class="subscribe-form">
-                        <input type="email" placeholder="Your email" required>
-                        <button type="submit">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="https://wa.me/923708099701" target="_blank" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="tel:03708099701" title="Call Us">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="#menu" title="Order Now">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="newsletter">
+                        <p>Get special offers & updates</p>
+                        <div class="subscribe-form">
+                            <input type="email" placeholder="Your email">
+                            <button class="btn btn-small">Subscribe</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Fast Pizza Cafe & Grill. All rights reserved. | Mehrabpur, Pakistan</p>
-                <p class="footer-services">
-                    <span>Dine-In</span> • 
-                    <span>Curbside Pickup</span> • 
-                    <span>No-Contact Delivery</span>
-                </p>
+                <p>&copy; 2023 Fast Pizza Café & Grill, Mehrabpur. All Rights Reserved.</p>
+                <p class="footer-note">Made with <i class="fas fa-heart"></i> for Mehrabpur</p>
             </div>
         </div>
     </footer>
 
-    <!-- Floating Action Buttons -->
-    <div class="floating-buttons">
-        <a href="https://wa.me/923001234567" class="floating-btn whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="tel:+923001234567" class="floating-btn call-btn">
-            <i class="fas fa-phone-alt"></i>
-        </a>
-        <a href="#order" class="floating-btn cart-btn">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count" id="cartCount">0</span>
-        </a>
-    </div>
-
-    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
