@@ -164,25 +164,31 @@ const menuData = {
           price: 350 },
     ],
     icecream: [
-        { id: 51, name: "King Kulla (1 Scoop)", category: "Fast Ice Cream", 
-          image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          price: 240 },
-        { id: 52, name: "King Kulla (2 Scoops)", category: "Fast Ice Cream", 
-          image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          price: 300 },
-        { id: 53, name: "King Kulla (3 Scoops)", category: "Fast Ice Cream", 
-          image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          price: 300 },
-        { id: 54, name: "Strawberry Ice Cream", category: "Fast Ice Cream", 
-          image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          prices: { "1 Scoop": 240, "2 Scoops": 300, "3 Scoops": 300 } },
-        { id: 55, name: "Mango Ice Cream", category: "Fast Ice Cream", 
-          image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          prices: { "1 Scoop": 240, "2 Scoops": 300, "3 Scoops": 300 } },
-        { id: 56, name: "Chocolate Ice Cream", category: "Fast Ice Cream", 
-          image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-          prices: { "1 Scoop": 240, "2 Scoops": 300, "3 Scoops": 300 } },
-    ],
+    { id: 51, name: "King Kulla (1 Scoop)", category: "Fast Ice Cream", 
+      image: "https://images.unsplash.com/photo-1560008581-09826d1de69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      price: 240 },
+    { id: 52, name: "King Kulla (2 Scoops)", category: "Fast Ice Cream", 
+      image: "https://images.unsplash.com/photo-1560008581-09826d1de69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      price: 300 },
+    { id: 53, name: "King Kulla (3 Scoops)", category: "Fast Ice Cream", 
+      image: "https://images.unsplash.com/photo-1560008581-09826d1de69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      price: 300 },
+    { id: 54, name: "Strawberry Ice Cream", category: "Fast Ice Cream", 
+      image: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      prices: { "1 Scoop": 240, "2 Scoops": 300, "3 Scoops": 300 } },
+    { id: 60, name: "Chocolate Chip Ice Cream", category: "Fast Ice Cream", 
+      image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      prices: { "1 Scoop": 240, "2 Scoops": 300, "3 Scoops": 300 } },
+    { id: 56, name: "Chocolate Ice Cream", category: "Fast Ice Cream", 
+      image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      prices: { "1 Scoop": 240, "2 Scoops": 300, "3 Scoops": 300 } },
+    { id: 57, name: "Pistachio Ice Cream", category: "Fast Ice Cream", 
+      image: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      prices: { "1 Scoop": 240, "2 Scoops": 300, "3 Scoops": 300 } },
+    { id: 58, name: "Vanilla Ice Cream", category: "Fast Ice Cream", 
+      image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      prices: { "1 Scoop": 240, "2 Scoops": 300, "3 Scoops": 300 } },
+],
     drinks: [
         { id: 57, name: "Banana Shake", category: "Fast Shakes", 
           image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
@@ -374,6 +380,7 @@ function loadMenuItems() {
 }
 
 // Create Menu Item Card
+// Create Menu Item Card
 function createMenuItemCard(item) {
     const hasMultipleSizes = item.prices && typeof item.prices === 'object';
     
@@ -406,9 +413,14 @@ function createMenuItemCard(item) {
                     </div>
                     <div class="menu-card-price">
                         <div class="price">Rs. <span class="price-value">${defaultPrice}</span></div>
-                        <button class="add-to-cart-btn" onclick="addToCart(${item.id}, '${item.name}', ${defaultPrice}, '${defaultSize}', '${item.image}', '${item.category}')">
-                            <i class="fas fa-cart-plus"></i> Add
-                        </button>
+                        <div class="menu-card-buttons">
+                            <button class="add-to-cart-btn" onclick="addToCart(${item.id}, '${item.name}', ${defaultPrice}, '${defaultSize}', '${item.image}', '${item.category}')">
+                                <i class="fas fa-cart-plus"></i> Add
+                            </button>
+                            <button class="buy-now-btn" onclick="buyNow(${item.id}, '${item.name}', ${defaultPrice}, '${defaultSize}', '${item.image}', '${item.category}')">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -426,9 +438,14 @@ function createMenuItemCard(item) {
                     </div>
                     <div class="menu-card-price">
                         <div class="price">Rs. ${item.price}</div>
-                        <button class="add-to-cart-btn" onclick="addToCart(${item.id}, '${item.name}', ${item.price}, '', '${item.image}', '${item.category}')">
-                            <i class="fas fa-cart-plus"></i> Add
-                        </button>
+                        <div class="menu-card-buttons">
+                            <button class="add-to-cart-btn" onclick="addToCart(${item.id}, '${item.name}', ${item.price}, '', '${item.image}', '${item.category}')">
+                                <i class="fas fa-cart-plus"></i> Add
+                            </button>
+                            <button class="buy-now-btn" onclick="buyNow(${item.id}, '${item.name}', ${item.price}, '', '${item.image}', '${item.category}')">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1117,3 +1134,106 @@ window.addEventListener('resize', () => {
         if (navToggle) navToggle.innerHTML = '<i class="fas fa-bars"></i>';
     }
 });
+
+// Buy Now Function
+function buyNow(id, name, price, size, image, category) {
+    // Clear the cart first
+    cart = [];
+    
+    // Add the selected item to cart
+    cart.push({
+        id,
+        name,
+        price: parseInt(price),
+        size,
+        image,
+        category,
+        quantity: 1
+    });
+    
+    // Save to localStorage
+    localStorage.setItem('fastPizzaCart', JSON.stringify(cart));
+    
+    // Update UI
+    updateCartCount();
+    
+    // Immediately proceed to checkout
+    setTimeout(() => {
+        proceedToCheckout();
+    }, 100);
+}
+
+// Update menu card creation to include Buy Now button
+// Replace your existing createMenuItemCard function with this:
+
+function createMenuItemCard(item) {
+    const hasMultipleSizes = item.prices && typeof item.prices === 'object';
+    
+    if (hasMultipleSizes) {
+        const sizes = Object.keys(item.prices);
+        const defaultSize = sizes[1] || sizes[0];
+        const defaultPrice = item.prices[defaultSize];
+        
+        return `
+            <div class="menu-card" data-id="${item.id}">
+                <div class="menu-card-image">
+                    <img src="${item.image}" alt="${item.name}" loading="lazy">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-card-header">
+                        <h3>${item.name}</h3>
+                        <div class="menu-card-category">${item.category}</div>
+                    </div>
+                    <div class="menu-card-size">
+                        <div>Size:</div>
+                        <div class="size-selector">
+                            ${sizes.map(size => `
+                                <button class="size-btn ${size === defaultSize ? 'active' : ''}" 
+                                        data-size="${size}" 
+                                        data-price="${item.prices[size]}">
+                                    ${size}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="menu-card-price">
+                        <div class="price">Rs. <span class="price-value">${defaultPrice}</span></div>
+                        <div class="menu-card-buttons">
+                            <button class="add-to-cart-btn" onclick="addToCart(${item.id}, '${item.name}', ${defaultPrice}, '${defaultSize}', '${item.image}', '${item.category}')">
+                                <i class="fas fa-cart-plus"></i> Add
+                            </button>
+                            <button class="buy-now-btn" onclick="buyNow(${item.id}, '${item.name}', ${defaultPrice}, '${defaultSize}', '${item.image}', '${item.category}')">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else {
+        return `
+            <div class="menu-card" data-id="${item.id}">
+                <div class="menu-card-image">
+                    <img src="${item.image}" alt="${item.name}" loading="lazy">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-card-header">
+                        <h3>${item.name}</h3>
+                        <div class="menu-card-category">${item.category}</div>
+                    </div>
+                    <div class="menu-card-price">
+                        <div class="price">Rs. ${item.price}</div>
+                        <div class="menu-card-buttons">
+                            <button class="add-to-cart-btn" onclick="addToCart(${item.id}, '${item.name}', ${item.price}, '', '${item.image}', '${item.category}')">
+                                <i class="fas fa-cart-plus"></i> Add
+                            </button>
+                            <button class="buy-now-btn" onclick="buyNow(${item.id}, '${item.name}', ${item.price}, '', '${item.image}', '${item.category}')">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+}
