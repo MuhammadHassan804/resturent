@@ -1804,3 +1804,572 @@ footer {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
+
+/* Additional Responsive Styles for All Screens */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero {
+        padding: 80px 20px;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 540px;
+        padding: 0 15px;
+    }
+    
+    .header-container {
+        padding: 10px 15px;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .logo span {
+        font-size: 0.8rem;
+    }
+    
+    .hero {
+        padding: 60px 15px;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+    }
+    
+    .section-title {
+        margin-bottom: 30px;
+    }
+    
+    .section-title h2 {
+        font-size: 1.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .menu, .deals, .contact, .about {
+        padding: 40px 0;
+    }
+    
+    .menu-grid, .deals-grid {
+        gap: 20px;
+    }
+    
+    .menu-card-content {
+        padding: 15px;
+    }
+    
+    .menu-card-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .price {
+        font-size: 1.3rem;
+    }
+    
+    .add-to-cart-btn, .buy-now-btn {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-card {
+        padding: 20px;
+    }
+    
+    .map-section {
+        padding: 20px;
+    }
+    
+    .map-placeholder {
+        height: 250px;
+    }
+    
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footer-col {
+        text-align: center;
+    }
+    
+    .footer-links a {
+        justify-content: center;
+    }
+    
+    .contact-info-footer p {
+        justify-content: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .subscribe-form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .whatsapp-text {
+        display: none;
+    }
+    
+    .cart-panel {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .checkout-content {
+        max-width: 95%;
+    }
+    
+    .checkout-steps {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .step {
+        flex: 1;
+        min-width: 80px;
+    }
+    
+    .step-line {
+        display: none;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .input-with-button {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    .header-container {
+        padding: 8px 12px;
+    }
+    
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+    
+    .logo span {
+        font-size: 0.7rem;
+    }
+    
+    .nav-toggle {
+        font-size: 1.3rem;
+    }
+    
+    .cart-icon-container i {
+        font-size: 1.3rem;
+    }
+    
+    .cart-count {
+        width: 18px;
+        height: 18px;
+        font-size: 0.7rem;
+    }
+    
+    .hero {
+        padding: 50px 12px;
+    }
+    
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .section-title h2 {
+        font-size: 1.5rem;
+    }
+    
+    .section-title h2::after {
+        width: 60px;
+        height: 3px;
+    }
+    
+    .menu-tabs {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .tab-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+    
+    .menu-grid, .deals-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .menu-card-image {
+        height: 180px;
+    }
+    
+    .menu-card-content {
+        padding: 12px;
+    }
+    
+    .menu-card-buttons {
+        flex-direction: column;
+    }
+    
+    .add-to-cart-btn, .buy-now-btn {
+        width: 100%;
+    }
+    
+    .deal-header {
+        padding: 15px;
+    }
+    
+    .deal-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    .deal-price {
+        font-size: 1.8rem;
+    }
+    
+    .deal-body {
+        padding: 20px;
+    }
+    
+    .contact-card {
+        padding: 15px;
+    }
+    
+    .contact-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .map-placeholder {
+        height: 200px;
+    }
+    
+    .map-content i {
+        font-size: 2.5rem;
+    }
+    
+    .map-content h4 {
+        font-size: 1.3rem;
+    }
+    
+    .delivery-badge {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .footer-logo h3 {
+        font-size: 1.4rem;
+    }
+    
+    .footer-description {
+        font-size: 0.9rem;
+    }
+    
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+        font-size: 0.9rem;
+    }
+    
+    .social-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .subscribe-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .subscribe-form input {
+        width: 100%;
+    }
+    
+    .mobile-order-btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+        bottom: 20px;
+    }
+    
+    .whatsapp-float {
+        bottom: 80px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+    
+    .cart-panel {
+        max-width: 100%;
+    }
+    
+    .cart-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .cart-item-image {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .cart-item-name {
+        font-size: 0.9rem;
+    }
+    
+    .cart-item-price {
+        font-size: 1rem;
+    }
+    
+    .quantity-btn {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+    
+    .quantity {
+        min-width: 25px;
+        font-size: 1rem;
+    }
+    
+    .checkout-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .step-number {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .step-label {
+        font-size: 0.7rem;
+    }
+    
+    .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .order-item-price {
+        align-self: flex-end;
+    }
+    
+    .total-line {
+        font-size: 1rem;
+    }
+    
+    .grand-total {
+        font-size: 1.2rem;
+    }
+    
+    .confirmation-summary {
+        padding: 20px;
+    }
+    
+    .summary-details p {
+        font-size: 0.9rem;
+    }
+    
+    .summary-details strong {
+        min-width: 100px;
+    }
+    
+    .payment-notice {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 1.3rem;
+    }
+    
+    .section-title h2 {
+        font-size: 1.3rem;
+    }
+    
+    .menu-card-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .price {
+        font-size: 1.2rem;
+    }
+    
+    .deal-price {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .cart-count-mobile {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    header, footer, .whatsapp-float, .mobile-order-btn, .cart-panel, .checkout-modal {
+        display: none;
+    }
+    
+    body {
+        background-color: white;
+        color: black;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+}
+
+/* Landscape Mode */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        padding: 40px 20px;
+    }
+    
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .cart-panel {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .checkout-content {
+        max-height: 85vh;
+    }
+    
+    .whatsapp-float {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .mobile-order-btn {
+        bottom: 10px;
+    }
+}
+
+/* High Resolution Screens */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero {
+        padding: 120px 20px;
+    }
+    
+    .section-title h2 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .btn:hover, .menu-card:hover, .whatsapp-float:hover {
+        transform: none;
+    }
+    
+    .size-btn {
+        padding: 8px 12px;
+    }
+    
+    .quantity-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .tab-btn {
+        padding: 10px 20px;
+    }
+}
